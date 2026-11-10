@@ -7,12 +7,13 @@ module spi_master_datapath #
   input wire rst_n,
   //Control Signals
   input wire load,
-  input wire shift_en,
+  input wire tx_shift_en,
+  input wire rx_sample_en,
   input wire count_en,
   input wire msb_first,
-  //Parallel Transmit Data
+  //Transmit Data
   input wire [DATA_WIDTH-1:0] tx_data,
-  //Serial Input
+  //Receive Serial Input
   input wire miso,
   //Datapath Outputs
   output wire mosi,
@@ -27,7 +28,8 @@ module spi_master_datapath #
       .clk         (clk), 
       .rst_n       (rst_n), 
       .load        (load), 
-      .shift_en    (shift_en),
+      .tx_shift_en (tx_shift_en),
+      .rx_sample_en (rx_sample_en),
       .msb_first   (msb_first), 
       .parallel_in (tx_data),  
       .serial_in   (miso), 
@@ -43,5 +45,4 @@ module spi_master_datapath #
       .count_en (count_en),
       .bit_done (bit_done), 
       .bit_count(bit_count));
-
 endmodule
